@@ -2,9 +2,8 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // cb(error) //บังคับเกิด error
-    cb(null, 'public'); //เก็นในโฟลเดอร์ที่ชื่ public
-  }, //where to keep file req=req.object,file=file that uplaod,cb =(error,)
+    cb(null, 'public');
+  },
   filename: (req, file, cb) => {
     console.log(file);
     const split = file.originalname.split('.');
