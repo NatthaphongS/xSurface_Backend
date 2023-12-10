@@ -4,7 +4,7 @@ async function connect() {
   try {
     mongoose.set('strictQuery', false);
     await mongoose.connect(
-      'mongodb+srv://sinsupharoek:FDHmIMwEy4BfvlOu@cluster0.rjc1ezn.mongodb.net/',
+      'mongodb+srv://admin:1234@cluster0.mjnwpip.mongodb.net/?retryWrites=true&w=majority',
       { useNewUrlParser: true }
     );
     console.log('DB connect');

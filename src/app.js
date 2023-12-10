@@ -2,17 +2,31 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const uploadMiddleWare = require('./middleware/upload');
+const uploadMiddleWare = require('./middleware/uploadmulter');
+const { connect } = require('./mongodb/mongodb.connect');
+const productController = require('./controller/product-controller');
 
 const app = express();
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+connect();
 
-app.post('/product/create', uploadMiddleWare.single('image'));
+app.get('/product', productController.getProduct);
+app.post(
+  '/product/create',
+  uploadMiddleWare.array('images[]'),
+  productController.createProduct
+);
+app.delete('/product/delete/:id', productController.deleteProduct);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(err.statusCode || 500).json({ message: err.message });
+});
 
 const PORT = process.env.PORT || 8888;
 app.listen(PORT, () => console.log(`Server is on port:${PORT}`));

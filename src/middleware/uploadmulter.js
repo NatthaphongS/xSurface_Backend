@@ -2,10 +2,11 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log('------1');
     cb(null, 'public');
   },
   filename: (req, file, cb) => {
-    console.log(file);
+    console.log('------2');
     const split = file.originalname.split('.');
     cb(
       null,
@@ -18,6 +19,6 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const uploadmulter = multer({ storage: storage });
 
-module.exports = upload;
+module.exports = uploadmulter;
