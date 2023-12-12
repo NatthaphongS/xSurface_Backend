@@ -1,11 +1,11 @@
 const ProductModel = require('../model/product.model');
-const { upload } = require('../utils/cloudinary-service');
+const { cloudinaryUpload } = require('../utils/cloudinary-service');
 const fs = require('fs/promises');
 
 const uploadMany = async (filesArr) => {
   const promises = [];
   for (const file of filesArr) {
-    promises.push(upload(file.buffer, file.originalname));
+    promises.push(cloudinaryUpload(file.buffer, file.originalname));
   }
   const imagesUrl = await Promise.all(promises);
   return imagesUrl;
