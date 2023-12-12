@@ -2,13 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const uploadMiddleWare = require('./middleware/uploadmulter');
-const { connect } = require('./mongodb/mongodb.connect');
-const productController = require('./controller/product-controller');
+const uploadMiddleWare = require('./src/middleware/uploadmulter');
+const { connect } = require('./src/mongodb/mongodb.connect');
+const productController = require('./src/controller/product-controller');
 
 const app = express();
 
 app.use(cors());
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
