@@ -13,8 +13,8 @@ const uploadMany = async (filesArr) => {
 
 exports.createProduct = async (req, res, next) => {
   try {
-    console.log(req.body);
-    console.log(req.body.images);
+    // console.log(req.body);
+    // console.log(req.body.images);
     const product = new ProductModel({
       name: req.body.name,
       code: req.body.code,

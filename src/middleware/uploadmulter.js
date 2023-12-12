@@ -2,11 +2,11 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log('------1');
+    // console.log('------1');
     cb(null, 'public');
   },
   filename: (req, file, cb) => {
-    console.log('------2');
+    // console.log('------2');
     const split = file.originalname.split('.');
     cb(
       null,
