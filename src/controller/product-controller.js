@@ -27,10 +27,10 @@ exports.createProduct = async (req, res, next) => {
     res.status(201).json({ result });
   } catch (error) {
     next(error);
-  } finally {
-    for (const file of req.files) {
-      fs.unlink(file.path);
-    }
+    // } finally {
+    //   for (const file of req.files) {
+    //     fs.unlink(file.path);
+    //   }
   }
 };
 
