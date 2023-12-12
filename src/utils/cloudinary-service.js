@@ -1,10 +1,17 @@
 const cloudinary = require('../config/cloudinary');
 
-exports.upload = async (path) => {
+exports.cloudinaryUpload = async (fileBuffer, fileName) => {
+  const fileBase64 = `data:image/${fileName
+    .split('.')
+    .pop()};base64,${fileBuffer.toString('base64')}`;
+
   try {
-    const result = await cloudinary.uploader.upload(path);
+    const result = await cloudinary.uploader.upload(fileBase64, {
+      public_id: fileName,
+    });
+
     return result.secure_url;
   } catch (error) {
-    console.log(error);
+    throw new Error(`Failed to upload to Cloudinary: ${error.message}`);
   }
 };

@@ -5,7 +5,7 @@ const fs = require('fs/promises');
 const uploadMany = async (filesArr) => {
   const promises = [];
   for (const file of filesArr) {
-    promises.push(upload(file.path));
+    promises.push(upload(file.buffer, file.originalname));
   }
   const imagesUrl = await Promise.all(promises);
   return imagesUrl;
