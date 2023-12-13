@@ -22,6 +22,7 @@ app.post(
   uploadMiddleWare.array('images[]'),
   productController.createProduct
 );
+app.get('/product/:id', productController.getProductByid);
 app.delete('/product/delete/:id', productController.deleteProduct);
 
 app.use((err, req, res, next) => {
